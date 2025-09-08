@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Email-Signatur Showcase</title>
+  <meta name="description" content="Mehrere E‑Mail‑Signaturen als Vorschläge – sauber nebeneinander mit Rahmen, Schatten und Beschreibung." />
+  <style>
+    /* --- Basic layout --- */
+    :root {
+      --bg: #f3f4f6;        /* gray-100 */
+      --fg: #111827;        /* gray-900 */
+      --muted: #4b5563;     /* gray-600 */
+      --card: #ffffff;
+      --card-border: #e5e7eb;  /* gray-200 */
+      --chip-bg: #f9fafb;      /* gray-50 */
+      --chip-border: #e5e7eb;
+      --link: #2563eb;      /* blue-600 */
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0f18;
+        --fg: #e5e7eb;
+        --muted: #9ca3af;
+        --card: #111827;
+        --card-border: #1f2937;
+        --chip-bg: #1f2937;
+        --chip-border: #374151;
+        --link: #60a5fa; /* blue-400 */
+      }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+    a { color: var(--link); }
+
+    header { padding: 48px 16px 12px; text-align: center; }
+    header h1 { margin: 0 0 6px; font-size: 28px; letter-spacing: .3px; }
+    header p { margin: 0; color: var(--muted); }
+
+    .container { max-width: 980px; margin: 0 auto; padding: 0 16px 64px; }
+
+    .card { background: var(--card); border: 1px solid var(--card-border); border-radius: 16px; box-shadow: 0 12px 30px rgba(0,0,0,.08); padding: 20px; margin: 20px 0 32px; }
+    .card h2 { margin: 0 0 8px; font-size: 20px; }
+    .card .desc { margin: 0 0 14px; color: var(--muted); }
+
+    .letter { background: #fff; border-radius: 12px; border: 1px solid var(--card-border); box-shadow: 0 10px 24px rgba(0,0,0,.12); overflow: hidden; }
+    .sig-frame { width: 100%; border: 0; display: block; background: #fff; }
+
+    .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 12px; }
+    .chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--chip-border); background: var(--chip-bg); text-decoration: none; font-size: 14px; }
+    .chip svg { width: 16px; height: 16px; }
+
+    details { margin-top: 10px; }
+    details > summary { cursor: pointer; user-select: none; }
+    pre { background: #0b1220; color: #e5e7eb; padding: 16px; border-radius: 12px; overflow: auto; }
+
+    footer { text-align: center; color: var(--muted); padding: 24px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>E‑Mail‑Signaturen: Vorschläge & Vorschau</h1>
+    <p>Jede Signatur in einem “Brief”-Rahmen mit Schatten & kurzer Beschreibung. Öffnen Sie die Vorschau in einem neuen Tab, um sie ohne Umrandung zu sehen.</p>
+  </header>
+
+  <main class="container">
+
+    <!-- === SIGNATUR A === -->
+    <section class="card" id="signatur-a">
+      <h2>Signatur A</h2>
+      <p class="desc">Kurzer Satz zur Idee (z. B. klassisch, Logo links, Social-Icons in Grau).</p>
+
+      <div class="letter">
+        <!-- Tipp: Legen Sie die Datei unter docs/sigs/signatur-a.html ab -->
+        <iframe class="sig-frame" src="sigs/signatur-a.html" loading="lazy" title="Signatur A Vorschau"></iframe>
+      </div>
+
+      <div class="controls">
+        <a class="chip" href="sigs/signatur-a.html" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+          In neuem Tab öffnen
+        </a>
+        <a class="chip" href="sigs/signatur-a.html" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+          HTML herunterladen
+        </a>
+      </div>
+
+      <details>
+        <summary>Hinweise & Quirks zur E‑Mail‑Kompatibilität</summary>
+        <ul>
+          <li>Nutzen Sie <strong>absolute</strong> Bild‑URLs (oder legen Sie Bilder im Ordner <code>docs/assets/</code> ab).</li>
+          <li>Verwenden Sie <strong>inline‑Styles</strong> in der Signatur (<code>style="…"</code>) statt globalem CSS.</li>
+          <li>Tabellen‑Layout (<code>&lt;table&gt;</code>) bleibt der robusteste Ansatz für E‑Mail‑Clients.</li>
+          <li>Hintergrundfarbe der Signatur auf <code>#ffffff</code> setzen, damit Dark‑Mode der Seite die Signatur nicht invertiert.</li>
+        </ul>
+      </details>
+    </section>
+
+    <!-- === SIGNATUR B === -->
+    <section class="card" id="signatur-b">
+      <h2>Signatur B</h2>
+      <p class="desc">Alternative mit Trennlinie, CTA‑Button und kompakten Kontaktinfos.</p>
+      <div class="letter">
+        <iframe class="sig-frame" src="sigs/signatur-b.html" loading="lazy" title="Signatur B Vorschau"></iframe>
+      </div>
+      <div class="controls">
+        <a class="chip" href="sigs/signatur-b.html" target="_blank" rel="noopener">In neuem Tab öffnen</a>
+        <a class="chip" href="sigs/signatur-b.html" download>HTML herunterladen</a>
+      </div>
+    </section>
+
+    <!-- === SIGNATUR C === -->
+    <section class="card" id="signatur-c">
+      <h2>Signatur C</h2>
+      <p class="desc">Variante mit Bild rechts, Social‑Icons farbig.</p>
+      <div class="letter">
+        <iframe class="sig-frame" src="sigs/signatur-c.html" loading="lazy" title="Signatur C Vorschau"></iframe>
+      </div>
+      <div class="controls">
+        <a class="chip" href="sigs/signatur-c.html" target="_blank" rel="noopener">In neuem Tab öffnen</a>
+        <a class="chip" href="sigs/signatur-c.html" download>HTML herunterladen</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <small>© <span id="year"></span> Signatur‑Showcase</small>
+  </footer>
+
+  <script>
+    // Dynamisches Jahr im Footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Auto‑Resize: passt die Iframe‑Höhe an die tatsächliche Signaturhöhe an
+    function autoResizeIframe(iframe) {
+      try {
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
+        if (!doc) return;
+        const setHeight = () => {
+          const h1 = doc.documentElement.scrollHeight || 0;
+          const h2 = doc.body ? doc.body.scrollHeight : 0;
+          const height = Math.max(h1, h2, 120); // Mindesthöhe
+          iframe.style.height = height + 'px';
+        };
+        setHeight();
+        // Nochmal messen, falls Bilder nachgeladen werden
+        setTimeout(setHeight, 400);
+        setTimeout(setHeight, 1200);
+        // Beobachte DOM‑Änderungen
+        const obs = new MutationObserver(setHeight);
+        obs.observe(doc.documentElement, { childList: true, subtree: true, attributes: true });
+      } catch (e) {
+        // Cross‑Origin‑Fall: ignorieren (bei GitHub Pages sollte es same‑origin sein)
+      }
+    }
+
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.sig-frame').forEach((f) => {
+        // Beim ersten Laden
+        f.addEventListener('load', () => autoResizeIframe(f));
+      });
+    });
+  </script>
+</body>
+</html>
