@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Email‑Signatur Showcase</title>
-  <meta name="description" content="Mehrere E‑Mail‑Signaturen als Vorschläge – sauber untereinander mit Rahmen, Schatten und Beschreibung." />
+  <title>Email-Signatur Showcase</title>
+  <meta name="description" content="Mehrere E-Mail-Signaturen als Vorschläge – sauber untereinander mit Rahmen, Schatten und Beschreibung." />
   <style>
     /* --- Basic layout --- */
     :root {
@@ -46,27 +46,29 @@
     .letter { background: #fff; border-radius: 12px; border: 1px solid var(--card-border); box-shadow: 0 10px 24px rgba(0,0,0,.12); overflow: hidden; }
     .sig-frame { width: 100%; border: 0; display: block; background: #fff; min-height: 120px; }
 
+    /* Buttons unter jedem Eintrag */
     .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 12px; }
     .chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--chip-border); background: var(--chip-bg); text-decoration: none; font-size: 14px; }
     .chip svg { width: 16px; height: 16px; }
+    .chip.active { box-shadow: 0 0 0 2px var(--link) inset; }
 
-    /* extra layout helpers */
-    .filter { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 12px 0 16px; }
+    /* Filterleiste oben */
+    nav.filter { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 12px 0 16px; }
+
+    /* kleine, nicht-klickbare Badges für Zieladressen */
     .badges { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 10px 0 0; }
     .badge { display: inline-flex; align-items: center; padding: 4px 8px; border-radius: 999px; border: 1px solid var(--chip-border); background: var(--chip-bg); font-size: 12px; text-decoration: none; color: inherit; opacity: .9; cursor: default; user-select: text; }
-    .badge:hover { opacity: 1; }
 
     details { margin-top: 10px; }
     details > summary { cursor: pointer; user-select: none; }
     pre { background: #0b1220; color: #e5e7eb; padding: 16px; border-radius: 12px; overflow: auto; }
 
     footer { text-align: center; color: var(--muted); padding: 24px; }
-    .chip.active{ box-shadow: 0 0 0 2px var(--link) inset; }
   </style>
 </head>
 <body>
   <header>
-    <h1>E‑Mail‑Signaturen: Vorschläge & Vorschau</h1>
+    <h1>E-Mail-Signaturen: Vorschläge & Vorschau</h1>
     <p>Öffnen Sie die Vorschau in einem neuen Tab, um sie ohne Umrandung zu sehen.</p>
   </header>
 
@@ -84,7 +86,7 @@
 
     <!-- Signatur 1 (Person) -->
     <section class="card" id="signatur-1" data-cat="person">
-      <h2>Signatur 1 · Einzelperson · Yann Favre – Variante 1</h2>
+      <h2>Signatur 1 · Einzelperson · Yann Favre – Variante 1</h2>
       <p class="desc">Einzelperson – Porträt Dr. Favre.</p>
       <div class="letter">
         <iframe class="sig-frame" src="sigs/person/yann-favre-var1.html" loading="lazy" title="Signatur 1 Vorschau"></iframe>
@@ -101,7 +103,7 @@
 
     <!-- Signatur 2 (Person) -->
     <section class="card" id="signatur-2" data-cat="person">
-      <h2>Signatur 2 · Einzelperson · Yann Favre – Variante 2</h2>
+      <h2>Signatur 2 · Einzelperson · Yann Favre – Variante 2</h2>
       <p class="desc">Einzelperson – Porträt Dr. Favre (Variante 2).</p>
       <div class="letter">
         <iframe class="sig-frame" src="sigs/person/yann-favre-var2.html" loading="lazy" title="Signatur 2 Vorschau"></iframe>
@@ -118,7 +120,7 @@
 
     <!-- Signatur 3 (Person) -->
     <section class="card" id="signatur-3" data-cat="person">
-      <h2>Signatur 3 · Einzelperson · Yann Favre – Variante 3</h2>
+      <h2>Signatur 3 · Einzelperson · Yann Favre – Variante 3</h2>
       <p class="desc">Einzelperson – Porträt Dr. Favre (Variante 3).</p>
       <div class="letter">
         <iframe class="sig-frame" src="sigs/person/yann-favre-var3.html" loading="lazy" title="Signatur 3 Vorschau"></iframe>
@@ -138,44 +140,94 @@
     <!-- ========================= -->
 
     <!-- Signatur 4 (Team) -->
-    \1
+    <section class="card" id="signatur-4" data-cat="team">
+      <h2>Signatur 4 · Team – Variante 1</h2>
+      <p class="desc">Team – Teamfoto, ohne Einzelporträt (Variante 1).</p>
+      <div class="letter">
+        <iframe class="sig-frame" src="sigs/team/team-var1.html" loading="lazy" title="Signatur 4 Vorschau"></iframe>
+      </div>
+      <div class="controls">
+        <a class="chip" href="sigs/team/team-var1.html" target="_blank" rel="noopener">In neuem Tab öffnen</a>
+        <a class="chip" href="sigs/team/team-var1.html" download>HTML herunterladen</a>
+      </div>
+      <div class="badges" aria-label="Ziel-Adressen">
         <span class="badge">info@belle-fontaine.ch</span>
         <span class="badge">secretariat@belle-fontaine.ch</span>
-      \2
+      </div>
     </section>
 
     <!-- Signatur 5 (Team) -->
-    \1
+    <section class="card" id="signatur-5" data-cat="team">
+      <h2>Signatur 5 · Team – Variante 2</h2>
+      <p class="desc">Team – Teamfoto, ohne Einzelporträt (Variante 2).</p>
+      <div class="letter">
+        <iframe class="sig-frame" src="sigs/team/team-var2.html" loading="lazy" title="Signatur 5 Vorschau"></iframe>
+      </div>
+      <div class="controls">
+        <a class="chip" href="sigs/team/team-var2.html" target="_blank" rel="noopener">In neuem Tab öffnen</a>
+        <a class="chip" href="sigs/team/team-var2.html" download>HTML herunterladen</a>
+      </div>
+      <div class="badges" aria-label="Ziel-Adressen">
         <span class="badge">info@belle-fontaine.ch</span>
         <span class="badge">secretariat@belle-fontaine.ch</span>
-      \2
+      </div>
     </section>
 
     <!-- Signatur 6 (Team) -->
-    \1
+    <section class="card" id="signatur-6" data-cat="team">
+      <h2>Signatur 6 · Team – Variante 3</h2>
+      <p class="desc">Team – Teamfoto, ohne Einzelporträt (Variante 3).</p>
+      <div class="letter">
+        <iframe class="sig-frame" src="sigs/team/team-var3.html" loading="lazy" title="Signatur 6 Vorschau"></iframe>
+      </div>
+      <div class="controls">
+        <a class="chip" href="sigs/team/team-var3.html" target="_blank" rel="noopener">In neuem Tab öffnen</a>
+        <a class="chip" href="sigs/team/team-var3.html" download>HTML herunterladen</a>
+      </div>
+      <div class="badges" aria-label="Ziel-Adressen">
         <span class="badge">info@belle-fontaine.ch</span>
         <span class="badge">secretariat@belle-fontaine.ch</span>
-      \2
+      </div>
     </section>
 
     <!-- Signatur 7 (Team) -->
-    \1
+    <section class="card" id="signatur-7" data-cat="team">
+      <h2>Signatur 7 · Team – Variante 4</h2>
+      <p class="desc">Team – Teamfoto, ohne Einzelporträt (Variante 4).</p>
+      <div class="letter">
+        <iframe class="sig-frame" src="sigs/team/team-var4.html" loading="lazy" title="Signatur 7 Vorschau"></iframe>
+      </div>
+      <div class="controls">
+        <a class="chip" href="sigs/team/team-var4.html" target="_blank" rel="noopener">In neuem Tab öffnen</a>
+        <a class="chip" href="sigs/team/team-var4.html" download>HTML herunterladen</a>
+      </div>
+      <div class="badges" aria-label="Ziel-Adressen">
         <span class="badge">info@belle-fontaine.ch</span>
         <span class="badge">secretariat@belle-fontaine.ch</span>
-      \2
+      </div>
     </section>
 
     <!-- Signatur 8 (Team) -->
-    \1
+    <section class="card" id="signatur-8" data-cat="team">
+      <h2>Signatur 8 · Team – Variante 5</h2>
+      <p class="desc">Team – Teamfoto, ohne Einzelporträt (Variante 5).</p>
+      <div class="letter">
+        <iframe class="sig-frame" src="sigs/team/team-var5.html" loading="lazy" title="Signatur 8 Vorschau"></iframe>
+      </div>
+      <div class="controls">
+        <a class="chip" href="sigs/team/team-var5.html" target="_blank" rel="noopener">In neuem Tab öffnen</a>
+        <a class="chip" href="sigs/team/team-var5.html" download>HTML herunterladen</a>
+      </div>
+      <div class="badges" aria-label="Ziel-Adressen">
         <span class="badge">info@belle-fontaine.ch</span>
         <span class="badge">secretariat@belle-fontaine.ch</span>
-      \2
+      </div>
     </section>
 
   </main>
 
   <footer>
-    <small>© <span id="year"></span> Signatur‑Showcase</small>
+    <small>© <span id="year"></span> Signatur-Showcase</small>
   </footer>
 
   <script>
