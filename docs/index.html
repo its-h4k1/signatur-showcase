@@ -6,64 +6,32 @@
   <title>Email-Signatur Showcase</title>
   <meta name="description" content="Mehrere E-Mail-Signaturen als Vorschläge – sauber untereinander mit Rahmen, Schatten und Beschreibung." />
   <style>
-    /* --- Basic layout --- */
-    :root {
-      --bg: #f3f4f6;        /* gray-100 */
-      --fg: #111827;        /* gray-900 */
-      --muted: #4b5563;     /* gray-600 */
-      --card: #ffffff;
-      --card-border: #e5e7eb;  /* gray-200 */
-      --chip-bg: #f9fafb;      /* gray-50 */
-      --chip-border: #e5e7eb;
-      --link: #2563eb;      /* blue-600 */
+    :root{
+      --bg:#f3f4f6;--fg:#111827;--muted:#4b5563;--card:#fff;--card-border:#e5e7eb;--chip-bg:#f9fafb;--chip-border:#e5e7eb;--link:#2563eb
     }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0b0f18;
-        --fg: #e5e7eb;
-        --muted: #9ca3af;
-        --card: #111827;
-        --card-border: #1f2937;
-        --chip-bg: #1f2937;
-        --chip-border: #374151;
-        --link: #60a5fa; /* blue-400 */
-      }
+    @media(prefers-color-scheme:dark){
+      :root{--bg:#0b0f18;--fg:#e5e7eb;--muted:#9ca3af;--card:#111827;--card-border:#1f2937;--chip-bg:#1f2937;--chip-border:#374151;--link:#60a5fa}
     }
-    * { box-sizing: border-box; }
-    body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
-    a { color: var(--link); }
-
-    header { padding: 48px 16px 12px; text-align: center; }
-    header h1 { margin: 0 0 6px; font-size: 28px; letter-spacing: .3px; }
-    header p { margin: 0; color: var(--muted); }
-
-    .container { max-width: 980px; margin: 0 auto; padding: 0 16px 64px; }
-
-    .card { background: var(--card); border: 1px solid var(--card-border); border-radius: 16px; box-shadow: 0 12px 30px rgba(0,0,0,.08); padding: 20px; margin: 20px 0 32px; }
-    .card h2 { margin: 0 0 8px; font-size: 20px; }
-    .card .desc { margin: 0 0 14px; color: var(--muted); }
-
-    .letter { background: #fff; border-radius: 12px; border: 1px solid var(--card-border); box-shadow: 0 10px 24px rgba(0,0,0,.12); overflow: hidden; }
-    .sig-frame { width: 100%; border: 0; display: block; background: #fff; min-height: 120px; }
-
-    /* Buttons unter jedem Eintrag */
-    .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 12px; }
-    .chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--chip-border); background: var(--chip-bg); text-decoration: none; font-size: 14px; }
-    .chip svg { width: 16px; height: 16px; }
-    .chip.active { box-shadow: 0 0 0 2px var(--link) inset; }
-
-    /* Filterleiste oben */
-    nav.filter { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 12px 0 16px; }
-
-    /* kleine, nicht-klickbare Badges für Zieladressen */
-    .badges { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 10px 0 0; }
-    .badge { display: inline-flex; align-items: center; padding: 4px 8px; border-radius: 999px; border: 1px solid var(--chip-border); background: var(--chip-bg); font-size: 12px; text-decoration: none; color: inherit; opacity: .9; cursor: default; user-select: text; }
-
-    details { margin-top: 10px; }
-    details > summary { cursor: pointer; user-select: none; }
-    pre { background: #0b1220; color: #e5e7eb; padding: 16px; border-radius: 12px; overflow: auto; }
-
-    footer { text-align: center; color: var(--muted); padding: 24px; }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"}
+    a{color:var(--link)}
+    header{padding:48px 16px 12px;text-align:center}
+    header h1{margin:0 0 6px;font-size:28px;letter-spacing:.3px}
+    header p{margin:0;color:var(--muted)}
+    .container{max-width:980px;margin:0 auto;padding:0 16px 64px}
+    .card{background:var(--card);border:1px solid var(--card-border);border-radius:16px;box-shadow:0 12px 30px rgba(0,0,0,.08);padding:20px;margin:20px 0 32px}
+    .card h2{margin:0 0 8px;font-size:20px}
+    .card .desc{margin:0 0 14px;color:var(--muted)}
+    .letter{background:#fff;border-radius:12px;border:1px solid var(--card-border);box-shadow:0 10px 24px rgba(0,0,0,.12);overflow:hidden}
+    .sig-frame{width:100%;border:0;display:block;background:#fff;min-height:120px}
+    .controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;border:1px solid var(--chip-border);background:var(--chip-bg);text-decoration:none;font-size:14px}
+    .chip svg{width:16px;height:16px}
+    .chip.active{box-shadow:0 0 0 2px var(--link) inset}
+    nav.filter{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0 16px}
+    .badges{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0 0}
+    .badge{display:inline-flex;align-items:center;padding:4px 8px;border-radius:999px;border:1px solid var(--chip-border);background:var(--chip-bg);font-size:12px;color:inherit;opacity:.9;cursor:default;user-select:text}
+    footer{text-align:center;color:var(--muted);padding:24px}
   </style>
 </head>
 <body>
@@ -87,7 +55,7 @@
     <!-- Signatur 1 (Person) -->
     <section class="card" id="signatur-1" data-cat="person">
       <h2>Signatur 1 · Einzelperson · Yann Favre – Variante 1</h2>
-      <p class="desc">Einzelperson – Porträt Dr. Favre.</p>
+      <p class="desc">Wortmarke oben, rundes Porträt, Claim + HIN-Hinweis.</p>
       <div class="letter">
         <iframe class="sig-frame" src="sigs/person/yann-favre-var1.html" loading="lazy" title="Signatur 1 Vorschau"></iframe>
       </div>
@@ -104,7 +72,7 @@
     <!-- Signatur 2 (Person) -->
     <section class="card" id="signatur-2" data-cat="person">
       <h2>Signatur 2 · Einzelperson · Yann Favre – Variante 2</h2>
-      <p class="desc">Einzelperson – Porträt Dr. Favre (Variante 2).</p>
+      <p class="desc">Porträt oben; Wortmarke dezent im Footer; Claim + HIN-Hinweis.</p>
       <div class="letter">
         <iframe class="sig-frame" src="sigs/person/yann-favre-var2.html" loading="lazy" title="Signatur 2 Vorschau"></iframe>
       </div>
@@ -121,7 +89,7 @@
     <!-- Signatur 3 (Person) -->
     <section class="card" id="signatur-3" data-cat="person">
       <h2>Signatur 3 · Einzelperson · Yann Favre – Variante 3</h2>
-      <p class="desc">Einzelperson – Porträt Dr. Favre (Variante 3).</p>
+      <p class="desc">Ultra-reduziert ohne Logo; Claim + HIN-Hinweis.</p>
       <div class="letter">
         <iframe class="sig-frame" src="sigs/person/yann-favre-var3.html" loading="lazy" title="Signatur 3 Vorschau"></iframe>
       </div>
@@ -142,7 +110,7 @@
     <!-- Signatur 4 (Team) -->
     <section class="card" id="signatur-4" data-cat="team">
       <h2>Signatur 4 · Team – Variante 1</h2>
-      <p class="desc">Team – Teamfoto, ohne Einzelporträt (Variante 1).</p>
+      <p class="desc">Teamfoto + Termin-CTA im Fließtext, klassisch layoutet.</p>
       <div class="letter">
         <iframe class="sig-frame" src="sigs/team/team-var1.html" loading="lazy" title="Signatur 4 Vorschau"></iframe>
       </div>
@@ -159,7 +127,7 @@
     <!-- Signatur 5 (Team) -->
     <section class="card" id="signatur-5" data-cat="team">
       <h2>Signatur 5 · Team – Variante 2</h2>
-      <p class="desc">Team – Teamfoto, ohne Einzelporträt (Variante 2).</p>
+      <p class="desc">Zentriert (Logo + Teamfoto), kompakte Kontaktzeilen.</p>
       <div class="letter">
         <iframe class="sig-frame" src="sigs/team/team-var2.html" loading="lazy" title="Signatur 5 Vorschau"></iframe>
       </div>
@@ -184,57 +152,42 @@
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // Iframe-Höhe an eingebettete Signatur anpassen (volle Größe)
-    function autoResizeIframe(iframe) {
-      const resize = () => {
-        try {
-          const doc = iframe.contentDocument || iframe.contentWindow.document;
-          if (!doc) return;
-          const body = doc.body, html = doc.documentElement;
-          const h = Math.max(
-            body ? body.scrollHeight : 0,
-            html ? html.scrollHeight : 0,
-            120
-          );
-          iframe.style.height = h + 'px';
-        } catch (e) { /* Cross-origin: ignorieren */ }
-      };
-
-      // sofort & verzögert messen (für Bilder/Fonts)
-      resize();
-      setTimeout(resize, 300);
-      setTimeout(resize, 800);
-      setTimeout(resize, 1600);
-
-      // spätere DOM-Änderungen beobachten
-      try {
-        const doc = iframe.contentDocument || iframe.contentWindow.document;
-        const obs = new MutationObserver(resize);
-        obs.observe(doc.documentElement, { childList: true, subtree: true, attributes: true });
-      } catch (e) {}
+    function autoResizeIframe(iframe){
+      const resize=()=>{try{
+        const doc=iframe.contentDocument||iframe.contentWindow.document;
+        if(!doc) return;
+        const body=doc.body, html=doc.documentElement;
+        const h=Math.max(body?body.scrollHeight:0, html?html.scrollHeight:0, 120);
+        iframe.style.height=h+'px';
+      }catch(e){}};
+      resize(); setTimeout(resize,300); setTimeout(resize,800); setTimeout(resize,1600);
+      try{
+        const doc=iframe.contentDocument||iframe.contentWindow.document;
+        const obs=new MutationObserver(resize);
+        obs.observe(doc.documentElement,{childList:true,subtree:true,attributes:true});
+      }catch(e){}
     }
 
-    // Setup nach DOM-Laden
-    window.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.sig-frame').forEach((f) => {
-        f.addEventListener('load', () => autoResizeIframe(f));
-        // Fallback, falls das load-Event sehr früh feuert
-        setTimeout(() => autoResizeIframe(f), 100);
+    // Setup nach DOM-Laden + Filter
+    window.addEventListener('DOMContentLoaded',()=>{
+      document.querySelectorAll('.sig-frame').forEach(f=>{
+        f.addEventListener('load',()=>autoResizeIframe(f));
+        setTimeout(()=>autoResizeIframe(f),100);
       });
 
-      // Filter-Logik (Alle / Einzelperson / Team)
-      const filterLinks = document.querySelectorAll('nav.filter .chip[data-filter]');
-      function applyFilter(cat) {
-        document.querySelectorAll('section.card').forEach(sec => {
-          const sCat = sec.getAttribute('data-cat') || 'all';
-          sec.style.display = (cat === 'all' || sCat === cat) ? '' : 'none';
+      const filterLinks=document.querySelectorAll('nav.filter .chip[data-filter]');
+      function applyFilter(cat){
+        document.querySelectorAll('section.card').forEach(sec=>{
+          const sCat=sec.getAttribute('data-cat')||'all';
+          sec.style.display=(cat==='all'||sCat===cat)?'':'none';
         });
       }
-      filterLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
+      filterLinks.forEach(link=>{
+        link.addEventListener('click',(e)=>{
           e.preventDefault();
-          const cat = link.getAttribute('data-filter');
+          const cat=link.getAttribute('data-filter');
           applyFilter(cat);
-          filterLinks.forEach(l => l.classList.remove('active'));
+          filterLinks.forEach(l=>l.classList.remove('active'));
           link.classList.add('active');
         });
       });
