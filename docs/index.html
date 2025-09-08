@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Email-Signatur Showcase</title>
-  <meta name="description" content="Mehrere E‑Mail‑Signaturen als Vorschläge – sauber nebeneinander mit Rahmen, Schatten und Beschreibung." />
+  <title>Email‑Signatur Showcase</title>
+  <meta name="description" content="Mehrere E‑Mail‑Signaturen als Vorschläge – sauber untereinander mit Rahmen, Schatten und Beschreibung." />
   <style>
     /* --- Basic layout --- */
     :root {
@@ -44,7 +44,7 @@
     .card .desc { margin: 0 0 14px; color: var(--muted); }
 
     .letter { background: #fff; border-radius: 12px; border: 1px solid var(--card-border); box-shadow: 0 10px 24px rgba(0,0,0,.12); overflow: hidden; }
-    .sig-frame { width: 100%; border: 0; display: block; background: #fff; }
+    .sig-frame { width: 100%; border: 0; display: block; background: #fff; min-height: 120px; }
 
     .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 12px; }
     .chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--chip-border); background: var(--chip-bg); text-decoration: none; font-size: 14px; }
@@ -61,7 +61,7 @@
 <body>
   <header>
     <h1>E‑Mail‑Signaturen: Vorschläge & Vorschau</h1>
-    <p>ffnen Sie die Vorschau in einem neuen Tab, um sie ohne Umrandung zu sehen.</p>
+    <p>Öffnen Sie die Vorschau in einem neuen Tab, um sie ohne Umrandung zu sehen.</p>
   </header>
 
   <main class="container">
@@ -103,7 +103,7 @@
     <!-- === SIGNATUR B === -->
     <section class="card" id="signatur-b" data-cat="person">
       <h2>Signatur B</h2>
-      <p class="desc">Alternative mit Trennlinie, CTA‑Button und kompakten Kontaktinfos.</p>
+      <p class="desc">Einzelperson – Variante 2.</p>
       <div class="letter">
         <iframe class="sig-frame" src="sigs/person/yann-favre-var2.html" loading="lazy" title="Signatur B Vorschau"></iframe>
       </div>
@@ -116,13 +116,13 @@
     <!-- === SIGNATUR C === -->
     <section class="card" id="signatur-c" data-cat="team">
       <h2>Signatur C</h2>
-      <p class="desc">Team-Variante 1</p>
+      <p class="desc">Team‑Variante 1.</p>
       <div class="letter">
         <iframe class="sig-frame" src="sigs/team/team-var1.html" loading="lazy" title="Signatur C Vorschau"></iframe>
       </div>
       <div class="controls">
         <a class="chip" href="sigs/team/team-var1.html" target="_blank" rel="noopener">In neuem Tab öffnen</a>
-        <a class="chip" href="sigs/team/team-var1.html.html" download>HTML herunterladen</a>
+        <a class="chip" href="sigs/team/team-var1.html" download>HTML herunterladen</a>
       </div>
     </section>
 
@@ -133,36 +133,50 @@
   </footer>
 
   <script>
-    // Dynamisches Jahr im Footer
+    // Jahr im Footer
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Auto‑Resize: passt die Iframe‑Höhe an die tatsächliche Signaturhöhe an
+    // Iframe-Höhe an eingebettete Signatur anpassen (volle Größe)
     function autoResizeIframe(iframe) {
+      const resize = () => {
+        try {
+          const doc = iframe.contentDocument || iframe.contentWindow.document;
+          if (!doc) return;
+          const body = doc.body, html = doc.documentElement;
+          const h = Math.max(
+            body ? body.scrollHeight : 0,
+            html ? html.scrollHeight : 0,
+            120
+          );
+          iframe.style.height = h + 'px';
+        } catch (e) { /* Cross-origin: ignorieren */ }
+      };
+
+      // sofort & verzögert messen (für Bilder/Fonts)
+      resize();
+      setTimeout(resize, 300);
+      setTimeout(resize, 800);
+      setTimeout(resize, 1600);
+
+      // spätere DOM-Änderungen beobachten
       try {
         const doc = iframe.contentDocument || iframe.contentWindow.document;
-        if (!doc) return;
-        const setHeight = () => {
-          const h1 = doc.documentElement.scrollHeight || 0;
-          const h2 = doc.body ? doc.body.scrollHeight : 0;
-          const height = Math.max(h1, h2, 120); // Mindesthöhe
-          iframe.style.height = height + 'px';
-        };
-        setHeight();
-        // Nochmal messen, falls Bilder nachgeladen werden
-        setTimeout(setHeight, 400);
-        setTimeout(setHeight, 1200);
-        // Beobachte DOM‑Änderungen
-        const obs = new MutationObserver(setHeight);
+        const obs = new MutationObserver(resize);
         obs.observe(doc.documentElement, { childList: true, subtree: true, attributes: true });
-      } catch (e) {
-        // Cross‑Origin‑Fall: ignorieren (bei GitHub Pages sollte es same‑origin sein)
-      }
+      } catch (e) {}
     }
 
-    window.addEventListener('load', () => {$1
-      // Filter-Logik für Kategorien
-      const filterLinks = document.querySelectorAll('.controls .chip[data-filter]');
-      function applyFilter(cat){
+    // Setup nach DOM-Laden
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.sig-frame').forEach((f) => {
+        f.addEventListener('load', () => autoResizeIframe(f));
+        // Fallback, falls das load-Event sehr früh feuert
+        setTimeout(() => autoResizeIframe(f), 100);
+      });
+
+      // Filter-Logik (Alle / Einzelperson / Team)
+      const filterLinks = document.querySelectorAll('nav.controls .chip[data-filter]');
+      function applyFilter(cat) {
         document.querySelectorAll('section.card').forEach(sec => {
           const sCat = sec.getAttribute('data-cat') || 'all';
           sec.style.display = (cat === 'all' || sCat === cat) ? '' : 'none';
@@ -177,9 +191,7 @@
           link.classList.add('active');
         });
       });
-      // Initial: alle sichtbar
       applyFilter('all');
-    });
     });
   </script>
 </body>
