@@ -55,6 +55,7 @@
     pre { background: #0b1220; color: #e5e7eb; padding: 16px; border-radius: 12px; overflow: auto; }
 
     footer { text-align: center; color: var(--muted); padding: 24px; }
+    .chip.active{ box-shadow: 0 0 0 2px var(--link) inset; }
   </style>
 </head>
 <body>
@@ -65,14 +66,20 @@
 
   <main class="container">
 
+    <nav class="controls" aria-label="Filter">
+      <a class="chip active" data-filter="all" href="#">Alle</a>
+      <a class="chip" data-filter="person" href="#">Einzelperson</a>
+      <a class="chip" data-filter="team" href="#">Team</a>
+    </nav>
+
     <!-- === SIGNATUR A === -->
-    <section class="card" id="signatur-a">
+    <section class="card" id="signatur-a" data-cat="person">
       <h2>Signatur A</h2>
       <p class="desc">Kurzer Satz zur Idee (z. B. klassisch, Logo links, Social-Icons in Grau).</p>
 
       <div class="letter">
         <!-- Tipp: Legen Sie die Datei unter docs/sigs/signatur-a.html ab -->
-        <iframe class="sig-frame" src="sigs/signatur-a.html" loading="lazy" title="Signatur A Vorschau"></iframe>
+        <iframe class="sig-frame" src="sigs/person/signatur-a.html" loading="lazy" title="Signatur A Vorschau"></iframe>
       </div>
 
       <div class="controls">
@@ -98,11 +105,11 @@
     </section>
 
     <!-- === SIGNATUR B === -->
-    <section class="card" id="signatur-b">
+    <section class="card" id="signatur-b" data-cat="team">
       <h2>Signatur B</h2>
       <p class="desc">Alternative mit Trennlinie, CTA‑Button und kompakten Kontaktinfos.</p>
       <div class="letter">
-        <iframe class="sig-frame" src="sigs/signatur-b.html" loading="lazy" title="Signatur B Vorschau"></iframe>
+        <iframe class="sig-frame" src="sigs/team/signatur-b.html" loading="lazy" title="Signatur B Vorschau"></iframe>
       </div>
       <div class="controls">
         <a class="chip" href="sigs/signatur-b.html" target="_blank" rel="noopener">In neuem Tab öffnen</a>
@@ -111,11 +118,11 @@
     </section>
 
     <!-- === SIGNATUR C === -->
-    <section class="card" id="signatur-c">
+    <section class="card" id="signatur-c" data-cat="person">
       <h2>Signatur C</h2>
       <p class="desc">Variante mit Bild rechts, Social‑Icons farbig.</p>
       <div class="letter">
-        <iframe class="sig-frame" src="sigs/signatur-c.html" loading="lazy" title="Signatur C Vorschau"></iframe>
+        <iframe class="sig-frame" src="sigs/person/signatur-c.html" loading="lazy" title="Signatur C Vorschau"></iframe>
       </div>
       <div class="controls">
         <a class="chip" href="sigs/signatur-c.html" target="_blank" rel="noopener">In neuem Tab öffnen</a>
@@ -156,11 +163,27 @@
       }
     }
 
-    window.addEventListener('load', () => {
-      document.querySelectorAll('.sig-frame').forEach((f) => {
-        // Beim ersten Laden
-        f.addEventListener('load', () => autoResizeIframe(f));
+    window.addEventListener('load', () => {$1
+      // Filter-Logik für Kategorien
+      const filterLinks = document.querySelectorAll('.controls .chip[data-filter]');
+      function applyFilter(cat){
+        document.querySelectorAll('section.card').forEach(sec => {
+          const sCat = sec.getAttribute('data-cat') || 'all';
+          sec.style.display = (cat === 'all' || sCat === cat) ? '' : 'none';
+        });
+      }
+      filterLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const cat = link.getAttribute('data-filter');
+          applyFilter(cat);
+          filterLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        });
       });
+      // Initial: alle sichtbar
+      applyFilter('all');
+    });
     });
   </script>
 </body>
