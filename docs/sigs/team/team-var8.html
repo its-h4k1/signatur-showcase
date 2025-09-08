@@ -23,15 +23,28 @@
 
           <!-- HEADER: Logo + Teamfoto zentriert -->
           <tr>
-            <td align="center" style="padding:10px 0;text-align:center;">
+            <td align="center" style="padding:0;text-align:center;">
+              <!-- SYMMETRISCHER TOP-SPACER -->
+              <div style="height:14px;line-height:14px;font-size:0;">&nbsp;</div>
+
+              <!-- WORTMARKE -->
               <img src="https://raw.githubusercontent.com/its-h4k1/bf-signatur-assets/main/bellefontaine-logo-400@2x.png"
-                   alt="Bellefontaine (wordmark)"
-                   style="display:block;height:24px;width:auto;border:0;outline:none;text-decoration:none;margin:0 auto;">
-              <div style="height:20px;line-height:20px;font-size:0;">&nbsp;</div>
+                   alt="Bellefontaine — logo"
+                   style="display:block;height:24px;width:auto;margin:0 auto;border:0;outline:none;text-decoration:none;">
+
+              <!-- SYMMETRISCHER BOTTOM-SPACER (gleich wie oben) -->
+              <div style="height:14px;line-height:14px;font-size:0;">&nbsp;</div>
+
+              <!-- TEAMFOTO -->
               <img src="https://raw.githubusercontent.com/its-h4k1/bf-signatur-assets/main/bf-gruppenfoto-signatur-600@2x.jpg"
                    alt="Équipe Bellefontaine"
-                   style="display:block;height:100px;width:auto;border:0;outline:none;text-decoration:none;border-radius:8px;margin:0 auto;">
+                   style="display:block;height:100px;width:auto;margin:0 auto;border:0;outline:none;text-decoration:none;border-radius:8px;">
             </td>
+          </tr>
+
+          <!-- Spacer zwischen Teamfoto und Divider (robust in allen Clients) -->
+          <tr>
+            <td style="height:14px;line-height:14px;font-size:0;">&nbsp;</td>
           </tr>
 
           <!-- Linie unter dem Header -->
@@ -45,7 +58,7 @@
           </tr>
 
           <!-- BODY zentriert -->
-          <tr>
+          <tr >
             <td align="center" style="font-size:12px;line-height:1.5;padding:0;text-align:center;">
               <p style="margin:0 0 10px 0;font-size:12px;color:#666666;">
                 Médecine et Chirurgie Esthétique
@@ -53,21 +66,23 @@
 
               <!-- CTA-Gruppe -->
               <p style="margin:10px 0 0 0;"><strong>Prendre rendez-vous :</strong></p>
-              <p style="margin:0;">T +41&nbsp;21&nbsp;601&nbsp;33&nbsp;33</p>
+              <p style="margin:0;">
+                <a href="tel:+41216013333" style="color:#333333;text-decoration:none;">
+                  T +41&nbsp;21&nbsp;601&nbsp;33&nbsp;33
+                </a>
+              </p>
               <p style="margin:0;">
                 <a href="mailto:info@belle-fontaine.ch" style="color:#333333;text-decoration:underline;">info@belle-fontaine.ch</a>
               </p>
 
-              <!-- Website separat -->
+              <!-- Website: eigene Zeile -->
               <p style="margin:10px 0 0 0;">
-                Site web :
                 <a href="https://www.belle-fontaine.ch" target="_blank" style="color:#333333;text-decoration:underline;">www.belle-fontaine.ch</a>
               </p>
-
-              <!-- Adresse → Google Maps (Place/Query) -->
-              <p style="margin:10px 0 0 0;">
-                <a href="https://maps.google.com/?q=Rue%20Belle-Fontaine%202,%201003%20Lausanne" target="_blank"
-                   style="color:#333333;text-decoration:none;">
+              
+              <!-- Adresse: eigene Zeile, auf Google Maps verlinkt (Place/Query) -->
+              <p style="margin:0;">
+                <a href="https://maps.google.com/?q=Rue%20Belle-Fontaine%202,%201003%20Lausanne" target="_blank" style="color:#333333;text-decoration:none;">
                   Rue Belle-Fontaine 2 &middot; CH&#8209;1003 Lausanne
                 </a>
               </p>
@@ -100,7 +115,7 @@
 
           <!-- Mehr Weißraum am Ende -->
           <tr>
-            <td style="height:24px;line-height:24px;font-size:0;">&nbsp;</td>
+            <td style="height:28px;line-height:28px;font-size:0;">&nbsp;</td>
           </tr>
 
         </table>
