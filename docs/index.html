@@ -50,6 +50,12 @@
     .chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--chip-border); background: var(--chip-bg); text-decoration: none; font-size: 14px; }
     .chip svg { width: 16px; height: 16px; }
 
+    /* extra layout helpers */
+    .filter { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 12px 0 16px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 10px 0 0; }
+    .badge { display: inline-flex; align-items: center; padding: 4px 8px; border-radius: 999px; border: 1px solid var(--chip-border); background: var(--chip-bg); font-size: 12px; text-decoration: none; color: inherit; opacity: .9; }
+    .badge:hover { opacity: 1; }
+
     details { margin-top: 10px; }
     details > summary { cursor: pointer; user-select: none; }
     pre { background: #0b1220; color: #e5e7eb; padding: 16px; border-radius: 12px; overflow: auto; }
@@ -66,7 +72,7 @@
 
   <main class="container">
 
-    <nav class="controls" aria-label="Filter">
+    <nav class="filter" aria-label="Filter">
       <a class="chip active" data-filter="all" href="#">Alle</a>
       <a class="chip" data-filter="person" href="#">Einzelperson</a>
       <a class="chip" data-filter="team" href="#">Team</a>
@@ -77,11 +83,9 @@
     <!-- ========================= -->
 
     <!-- Signatur 1 (Person) -->
-    \1Einzelperson – Porträt Dr. Favre.\3
-      <div class="controls" aria-label="Ziel-Adressen">
-        <a class="chip" href="mailto:drfavre@hin.ch">drfavre@hin.ch</a>
-        <a class="chip" href="mailto:yannfavre@hin.ch">yannfavre@hin.ch</a>
-      </div>
+    <section class="card" id="signatur-1" data-cat="person">
+      <h2>Signatur 1 · Einzelperson · Yann Favre – Variante 1</h2>
+      <p class="desc">Einzelperson – Porträt Dr. Favre.</p>
       <div class="letter">
         <iframe class="sig-frame" src="sigs/person/yann-favre-var1.html" loading="lazy" title="Signatur 1 Vorschau"></iframe>
       </div>
@@ -89,14 +93,16 @@
         <a class="chip" href="sigs/person/yann-favre-var1.html" target="_blank" rel="noopener">In neuem Tab öffnen</a>
         <a class="chip" href="sigs/person/yann-favre-var1.html" download>HTML herunterladen</a>
       </div>
+      <div class="badges" aria-label="Ziel-Adressen">
+        <a class="badge" href="mailto:drfavre@hin.ch">drfavre@hin.ch</a>
+        <a class="badge" href="mailto:yannfavre@hin.ch">yannfavre@hin.ch</a>
+      </div>
     </section>
 
     <!-- Signatur 2 (Person) -->
-    \1Einzelperson – Porträt Dr. Favre (Variante 2).\3
-      <div class="controls" aria-label="Ziel-Adressen">
-        <a class="chip" href="mailto:drfavre@hin.ch">drfavre@hin.ch</a>
-        <a class="chip" href="mailto:yannfavre@hin.ch">yannfavre@hin.ch</a>
-      </div>
+    <section class="card" id="signatur-2" data-cat="person">
+      <h2>Signatur 2 · Einzelperson · Yann Favre – Variante 2</h2>
+      <p class="desc">Einzelperson – Porträt Dr. Favre (Variante 2).</p>
       <div class="letter">
         <iframe class="sig-frame" src="sigs/person/yann-favre-var2.html" loading="lazy" title="Signatur 2 Vorschau"></iframe>
       </div>
@@ -104,20 +110,26 @@
         <a class="chip" href="sigs/person/yann-favre-var2.html" target="_blank" rel="noopener">In neuem Tab öffnen</a>
         <a class="chip" href="sigs/person/yann-favre-var2.html" download>HTML herunterladen</a>
       </div>
+      <div class="badges" aria-label="Ziel-Adressen">
+        <a class="badge" href="mailto:drfavre@hin.ch">drfavre@hin.ch</a>
+        <a class="badge" href="mailto:yannfavre@hin.ch">yannfavre@hin.ch</a>
+      </div>
     </section>
 
     <!-- Signatur 3 (Person) -->
-    \1Einzelperson – Porträt Dr. Favre (Variante 3).\3
-      <div class="controls" aria-label="Ziel-Adressen">
-        <a class="chip" href="mailto:drfavre@hin.ch">drfavre@hin.ch</a>
-        <a class="chip" href="mailto:yannfavre@hin.ch">yannfavre@hin.ch</a>
-      </div>
+    <section class="card" id="signatur-3" data-cat="person">
+      <h2>Signatur 3 · Einzelperson · Yann Favre – Variante 3</h2>
+      <p class="desc">Einzelperson – Porträt Dr. Favre (Variante 3).</p>
       <div class="letter">
         <iframe class="sig-frame" src="sigs/person/yann-favre-var3.html" loading="lazy" title="Signatur 3 Vorschau"></iframe>
       </div>
       <div class="controls">
         <a class="chip" href="sigs/person/yann-favre-var3.html" target="_blank" rel="noopener">In neuem Tab öffnen</a>
         <a class="chip" href="sigs/person/yann-favre-var3.html" download>HTML herunterladen</a>
+      </div>
+      <div class="badges" aria-label="Ziel-Adressen">
+        <a class="badge" href="mailto:drfavre@hin.ch">drfavre@hin.ch</a>
+        <a class="badge" href="mailto:yannfavre@hin.ch">yannfavre@hin.ch</a>
       </div>
     </section>
 
@@ -126,11 +138,9 @@
     <!-- ========================= -->
 
     <!-- Signatur 4 (Team) -->
-    \1Team – Teamfoto, ohne Einzelporträt (Variante 1).\3
-      <div class="controls" aria-label="Ziel-Adressen">
-        <a class="chip" href="mailto:info@belle-fontaine.ch">info@belle-fontaine.ch</a>
-        <a class="chip" href="mailto:secretariat@belle-fontaine.ch">secretariat@belle-fontaine.ch</a>
-      </div>
+    <section class="card" id="signatur-4" data-cat="team">
+      <h2>Signatur 4 · Team – Variante 1</h2>
+      <p class="desc">Team – Teamfoto, ohne Einzelporträt (Variante 1).</p>
       <div class="letter">
         <iframe class="sig-frame" src="sigs/team/team-var1.html" loading="lazy" title="Signatur 4 Vorschau"></iframe>
       </div>
@@ -138,14 +148,16 @@
         <a class="chip" href="sigs/team/team-var1.html" target="_blank" rel="noopener">In neuem Tab öffnen</a>
         <a class="chip" href="sigs/team/team-var1.html" download>HTML herunterladen</a>
       </div>
+      <div class="badges" aria-label="Ziel-Adressen">
+        <a class="badge" href="mailto:info@belle-fontaine.ch">info@belle-fontaine.ch</a>
+        <a class="badge" href="mailto:secretariat@belle-fontaine.ch">secretariat@belle-fontaine.ch</a>
+      </div>
     </section>
 
     <!-- Signatur 5 (Team) -->
-    \1Team – Teamfoto, ohne Einzelporträt (Variante 2).\3
-      <div class="controls" aria-label="Ziel-Adressen">
-        <a class="chip" href="mailto:info@belle-fontaine.ch">info@belle-fontaine.ch</a>
-        <a class="chip" href="mailto:secretariat@belle-fontaine.ch">secretariat@belle-fontaine.ch</a>
-      </div>
+    <section class="card" id="signatur-5" data-cat="team">
+      <h2>Signatur 5 · Team – Variante 2</h2>
+      <p class="desc">Team – Teamfoto, ohne Einzelporträt (Variante 2).</p>
       <div class="letter">
         <iframe class="sig-frame" src="sigs/team/team-var2.html" loading="lazy" title="Signatur 5 Vorschau"></iframe>
       </div>
@@ -153,14 +165,16 @@
         <a class="chip" href="sigs/team/team-var2.html" target="_blank" rel="noopener">In neuem Tab öffnen</a>
         <a class="chip" href="sigs/team/team-var2.html" download>HTML herunterladen</a>
       </div>
+      <div class="badges" aria-label="Ziel-Adressen">
+        <a class="badge" href="mailto:info@belle-fontaine.ch">info@belle-fontaine.ch</a>
+        <a class="badge" href="mailto:secretariat@belle-fontaine.ch">secretariat@belle-fontaine.ch</a>
+      </div>
     </section>
 
     <!-- Signatur 6 (Team) -->
-    \1Team – Teamfoto, ohne Einzelporträt (Variante 3).\3
-      <div class="controls" aria-label="Ziel-Adressen">
-        <a class="chip" href="mailto:info@belle-fontaine.ch">info@belle-fontaine.ch</a>
-        <a class="chip" href="mailto:secretariat@belle-fontaine.ch">secretariat@belle-fontaine.ch</a>
-      </div>
+    <section class="card" id="signatur-6" data-cat="team">
+      <h2>Signatur 6 · Team – Variante 3</h2>
+      <p class="desc">Team – Teamfoto, ohne Einzelporträt (Variante 3).</p>
       <div class="letter">
         <iframe class="sig-frame" src="sigs/team/team-var3.html" loading="lazy" title="Signatur 6 Vorschau"></iframe>
       </div>
@@ -168,14 +182,16 @@
         <a class="chip" href="sigs/team/team-var3.html" target="_blank" rel="noopener">In neuem Tab öffnen</a>
         <a class="chip" href="sigs/team/team-var3.html" download>HTML herunterladen</a>
       </div>
+      <div class="badges" aria-label="Ziel-Adressen">
+        <a class="badge" href="mailto:info@belle-fontaine.ch">info@belle-fontaine.ch</a>
+        <a class="badge" href="mailto:secretariat@belle-fontaine.ch">secretariat@belle-fontaine.ch</a>
+      </div>
     </section>
 
     <!-- Signatur 7 (Team) -->
-    \1Team – Teamfoto, ohne Einzelporträt (Variante 4).\3
-      <div class="controls" aria-label="Ziel-Adressen">
-        <a class="chip" href="mailto:info@belle-fontaine.ch">info@belle-fontaine.ch</a>
-        <a class="chip" href="mailto:secretariat@belle-fontaine.ch">secretariat@belle-fontaine.ch</a>
-      </div>
+    <section class="card" id="signatur-7" data-cat="team">
+      <h2>Signatur 7 · Team – Variante 4</h2>
+      <p class="desc">Team – Teamfoto, ohne Einzelporträt (Variante 4).</p>
       <div class="letter">
         <iframe class="sig-frame" src="sigs/team/team-var4.html" loading="lazy" title="Signatur 7 Vorschau"></iframe>
       </div>
@@ -183,20 +199,26 @@
         <a class="chip" href="sigs/team/team-var4.html" target="_blank" rel="noopener">In neuem Tab öffnen</a>
         <a class="chip" href="sigs/team/team-var4.html" download>HTML herunterladen</a>
       </div>
+      <div class="badges" aria-label="Ziel-Adressen">
+        <a class="badge" href="mailto:info@belle-fontaine.ch">info@belle-fontaine.ch</a>
+        <a class="badge" href="mailto:secretariat@belle-fontaine.ch">secretariat@belle-fontaine.ch</a>
+      </div>
     </section>
 
     <!-- Signatur 8 (Team) -->
-    \1Team – Teamfoto, ohne Einzelporträt (Variante 5).\3
-      <div class="controls" aria-label="Ziel-Adressen">
-        <a class="chip" href="mailto:info@belle-fontaine.ch">info@belle-fontaine.ch</a>
-        <a class="chip" href="mailto:secretariat@belle-fontaine.ch">secretariat@belle-fontaine.ch</a>
-      </div>
+    <section class="card" id="signatur-8" data-cat="team">
+      <h2>Signatur 8 · Team – Variante 5</h2>
+      <p class="desc">Team – Teamfoto, ohne Einzelporträt (Variante 5).</p>
       <div class="letter">
         <iframe class="sig-frame" src="sigs/team/team-var5.html" loading="lazy" title="Signatur 8 Vorschau"></iframe>
       </div>
       <div class="controls">
         <a class="chip" href="sigs/team/team-var5.html" target="_blank" rel="noopener">In neuem Tab öffnen</a>
         <a class="chip" href="sigs/team/team-var5.html" download>HTML herunterladen</a>
+      </div>
+      <div class="badges" aria-label="Ziel-Adressen">
+        <a class="badge" href="mailto:info@belle-fontaine.ch">info@belle-fontaine.ch</a>
+        <a class="badge" href="mailto:secretariat@belle-fontaine.ch">secretariat@belle-fontaine.ch</a>
       </div>
     </section>
 
@@ -249,7 +271,7 @@
       });
 
       // Filter-Logik (Alle / Einzelperson / Team)
-      const filterLinks = document.querySelectorAll('nav.controls .chip[data-filter]');
+      const filterLinks = document.querySelectorAll('nav.filter .chip[data-filter]');
       function applyFilter(cat) {
         document.querySelectorAll('section.card').forEach(sec => {
           const sCat = sec.getAttribute('data-cat') || 'all';
